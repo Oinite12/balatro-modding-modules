@@ -4,7 +4,7 @@ This repository contains various files that can be quickly inserted into mod cod
 You may use and modify these files without prior permission for any purpose. Credit is also optional, but appreciated nonetheless. If, however, you are going to use these files without any fundamental modifications (i.e. outside of designated configuration areas), I *strongly* advise linking back to this repository, if only to point people reading your source code to the documentation present on this repository's wiki.
 
 ## Current modules
-* **Cardanim** - A card animation system that allows *per-layer* simple sequence definitions and sequence generation from "macros".
+* **Cardanim** - A card animation system that streamlines *per-layer* simple sequence definitions, and allows sequence generation from "macros".
   * Developed for [Ascensio](//github.com/MarioFan597/Ascensio) by Oinite, further developed for general mod usage.
 * **JTML** - An alternate syntax for UIBox definitions that is unambiguous, easier to read, and easier to organize.
   * Developed by Oinite.
