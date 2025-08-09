@@ -127,6 +127,7 @@ local function generate_uibox_definition(jtml, stylesheet)
 		and jtml.config
 	) then return jtml end
 	local uibox_table = {config = {}}
+	stylesheet = stylesheet or {}
 
 	local element_name = jtml[1]
 	local children = jtml[2]
