@@ -8,6 +8,8 @@ You may use and modify these files without prior permission for any purpose. Cre
   * Developed for [Ascensio](//github.com/MarioFan597/Ascensio) by Oinite, further developed for general mod usage.
 * **JTML** - An alternate syntax for UIBox definitions that is unambiguous, easier to read, and easier to organize.
   * Developed by Oinite.
+* **Locsplit** - (UNDOCUMENTED) A system that allows for localization files to be split into separate, smaller, and easier to navigate localization files.
+  * Developed by Oinite.
 
 ## Using these files
 There are two ways to use these files:
