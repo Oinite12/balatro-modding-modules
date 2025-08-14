@@ -22,3 +22,6 @@ local function locsplit(loc_table, lang)
 		end
 	end
 end
+
+-- Put function on global scope to use it anywhere
+-- global_function = generate_uibox_definition
