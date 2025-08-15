@@ -47,7 +47,7 @@ local style_to_config = {
 	maxWidth = "maxw",
 
 	minimumHeight = "minh",
-	minHeight = "minw",
+	minHeight = "minh",
 	height = "h",
 	maxHeight = "maxh",
 
