@@ -1,6 +1,11 @@
 local mod_path = nil
 local mod_id = nil
 
+-- Retrives localization present in the directory localization/<lang>\
+-- and appends it to <loc_table>.
+---@param loc_table table
+---@param lang string
+---@return nil
 local function locsplit(loc_table, lang)
 	local loc_folder = ("localization/%s/"):format(lang)
 	local loc_path = mod_path .. loc_folder

@@ -1,6 +1,11 @@
 -- JTML - Jimbo's Tabular Markup Lingo, an alternate syntax for UIBox definitions
 
+-- Splits <input> along <sep>, a character or Lua pattern.
+---@param input string
+---@param sep string
+---@return table
 local function split(input, sep)
+
 	-- this function taken from https://stackoverflow.com/a/7615129
 	if sep == nil then sep = "%s" end
 	local t = {}
@@ -106,6 +111,10 @@ local pre_formatting = {
 	end
 }
 
+-- Adds stylerule properties to a UIBox config table.
+---@param config table
+---@param stylerules table
+---@return nil
 local function add_stylerule_to_config(config, stylerules)
 	for property, value in pairs(stylerules) do
 		if style_to_config[property] then
@@ -119,6 +128,10 @@ local function add_stylerule_to_config(config, stylerules)
 	end
 end
 
+-- Generates a UIBox definition table out of a JTML table and stylesheet.
+---@param jtml table
+---@param stylesheet table
+---@return table
 local function generate_uibox_definition(jtml, stylesheet)
 	if ( -- If jtml is actually just UIBox syntax
 		not jtml[1]
