@@ -1,11 +1,116 @@
 -- JTML - Jimbo's Tabular Markup Lingo, an alternate syntax for UIBox definitions
 
+-- LuaCATS classes - source code a little below
+
+---@class Balatro.Colour
+---@field [1] number -- r
+---@field [2] number -- g
+---@field [3] number -- b
+---@field [4] number -- a
+local colour_def = {}
+
+---@class JTML.JTML
+---@field [1] "root"|"row"|"column"|"text"|"object"|"box"|"slider"|"input"
+---@field id? string
+---@field class? string
+---@field style? JTML.Style
+---@field ondraw? string
+---@field onclick? string
+---@field reftable? table
+---@field refvalue? string
+---@field tooltip? { title: string, text: string[] }
+---@field detailedtooltip? { title: string, text: string[] }
+---@field role? { role_type: "Major"|"Minor"|"Glued" }
+---@field norole? boolean
+---@field instancetype? "NODE"|"MOVEABLE"|"UIBOX"|"CARDAREA"|"CARD"|"UI_BOX"|"ALERT"|"POPUP"
+---@field language? string
+---@field object? any
+---@field text? string
+---@field [2]? JTML.JTML[]|Balatro.UIBoxDefinition[]
+local jtml_def = {}
+
+---@class JTML.Style
+---@field align? string
+---@field minimumWidth? number
+---@field minWidth? number
+---@field width? number
+---@field maxWidth? number
+---@field minimumHeight? number
+---@field minHeight? number
+---@field height? number
+---@field maxHeight? number
+---@field padding? number
+---@field roundness? number
+---@field fillColour? Balatro.Colour
+---@field fillColor? Balatro.Colour
+---@field noFill? boolean
+---@field outlineWidth? number
+---@field outlineColour? Balatro.Colour
+---@field outlineColor? Balatro.Colour
+---@field emboss? number
+---@field hover? boolean
+---@field shadow? boolean
+---@field juice? boolean
+---@field onePress? any
+---@field focus? table
+---@field scale? number
+---@field colour? Balatro.Colour
+---@field color? Balatro.Colour
+---@field textOrientation? string
+---@field lineEmboss? any
+local jtml_style_def = {}
+
+---@class Balatro.UIBoxDefinition
+---@field n integer
+---@field config? Balatro.UIBoxConfig
+---@field nodes Balatro.UIBoxDefinition[]
+local uiboxdef_def = {}
+
+---@class Balatro.UIBoxConfig
+---@field align? string
+---@field h? number
+---@field minh? number
+---@field maxh? number
+---@field w? number
+---@field minw? number
+---@field maxw? number
+---@field padding? number
+---@field r? number
+---@field colour Balatro.Colour
+---@field no_fill? boolean
+---@field outline? number
+---@field outline_colour? Balatro.Colour
+---@field emboss? number
+---@field hover? boolean
+---@field shadow? boolean
+---@field juice? boolean
+---@field id? string
+---@field instance_type? "NODE"|"MOVEABLE"|"UIBOX"|"CARDAREA"|"CARD"|"UI_BOX"|"ALERT"|"POPUP"
+---@field ref_table? table
+---@field ref_value? string
+---@field func? string
+---@field button? string
+---@field tooltip? { title: string, text: string[] }
+---@field detailed_tooltip? { title: string, text: string[] }
+---@field text? string
+---@field scale? number
+---@field vert? boolean
+---@field object? any
+---@field role? { role_type: "Major"|"Minor"|"Glued" }
+---@field no_role? boolean
+---@field lang? string
+---@field line_emboss? any	
+---@field one_press? any
+---@field focus_args table
+local uiboxconfig_def = {}
+
+----
+
 -- Splits <input> along <sep>, a character or Lua pattern.
 ---@param input string
 ---@param sep string
 ---@return table
 local function split(input, sep)
-
 	-- this function taken from https://stackoverflow.com/a/7615129
 	if sep == nil then sep = "%s" end
 	local t = {}
@@ -112,8 +217,8 @@ local pre_formatting = {
 }
 
 -- Adds stylerule properties to a UIBox config table.
----@param config table
----@param stylerules table
+---@param config Balatro.UIBoxConfig
+---@param stylerules JTML.Style
 ---@return nil
 local function add_stylerule_to_config(config, stylerules)
 	for property, value in pairs(stylerules) do
@@ -129,9 +234,9 @@ local function add_stylerule_to_config(config, stylerules)
 end
 
 -- Generates a UIBox definition table out of a JTML table and stylesheet.
----@param jtml table
----@param stylesheet table
----@return table
+---@param jtml JTML.JTML|Balatro.UIBoxDefinition
+---@param stylesheet { [string]: JTML.Style }
+---@return Balatro.UIBoxDefinition
 local function generate_uibox_definition(jtml, stylesheet)
 	if ( -- If jtml is actually just UIBox syntax
 		not jtml[1]
